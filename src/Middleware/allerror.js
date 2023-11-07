@@ -13,7 +13,7 @@ export function customerror(req, res, statuscode, message) {
 }
 
 export const catchAsyncError = (passedfun) => (req, res) => {
-  return Promise.resolve(passedfun).catch((err) => {
+  return Promise.resolve(passedfun(req,res)).catch((err) => {
     return customerror(req, res, 500, err.message);
   });
 };
